@@ -1,0 +1,85 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  Desktop-Integration-Test:
+    machine: true
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - pm-v1-dependencies-{{ checksum "app/package.json" }}
+            - pm-v1-dependencies
+      
+      - run: 
+          name: Build Image Test 
+          command: |
+            mv .env.example .env
+            docker-compose build desktop-web
+      
+      - save_cache:
+            paths:
+              - node_modules
+            key: pm-v1-dependencies-{{ checksum "app/package.json" }}
+      
+      - run:
+          name: 'Integration Test'
+          command: |
+            docker-compose run desktop-web integration:test
+  
+  Build-Desktop-Web-Image:
+    machine: true
+    working_directory: ~/app
+
+    steps: 
+      - checkout
+
+      - restore_cache:
+          keys:
+            - bm-v1-dependencies-{{ checksum "app/package.json" }}
+            - bm-v1-dependencies-
+      - run:
+          name: 'Create Docker Image'
+          command: |
+            mv .env.example .env
+            sed -i 's/MODE=local/MODE=dev-server/' .env
+            docker-compose build desktop-web
+            docker tag app_desktop-web ferdiardiansa/rb-client_desktop-web:beta
+            docker images
+
+      - save_cache:
+          paths:
+            - node_modules
+            - docker
+          key: bm-v1-dependencies-
+      
+      - run:
+          name: 'Login To Docker Hub'
+          command: |
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - run:
+          name: 'Push To Docker Hub'
+          command: |
+            docker push ferdiardiansa/rb-client_desktop-web:beta
+    
+workflows:
+  version: 2
+  Dock_Workflow:
+    jobs:
+      - Desktop-Integration-Test:
+          filters:
+            branches:
+              only: 
+                - /feature/\dev-.*/
+      - Build-Desktop-Web-Image:
+          requires:
+            - Desktop-Integration-Test
+          filters:
+            branches:
+              only: 
+                - develop

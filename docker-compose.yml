@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+  desktop-web:
+    container_name: client-desktop-web
+    build:
+      context: .
+      dockerfile: '.docker/app/desktop.Dockerfile'
+      cache_from:
+        - node
+      args: 
+        - NODE_ENV=${NODE_ENV}
+        - MODE=${MODE}
+    env_file:
+      - .env
+    volumes:
+      - ./desktop/:/usr/app
+      - /usr/app/node_modules
+    networks:
+      - desktop-network
+
+networks:
+  desktop-network:
