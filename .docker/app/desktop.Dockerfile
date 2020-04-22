@@ -18,7 +18,7 @@ RUN mkdir /usr/app
 # Setup working directory
 WORKDIR /usr/app
 
-COPY ./desktop /usr/app
+COPY ./app /usr/app
 
 RUN if [ "${NODE_ENV}" = "development" ]; \
     then npm i -loglevel info; \
