@@ -71,7 +71,12 @@ workflows:
   version: 2
   Dock_Workflow:
     jobs:
-      - Desktop-Integration-Test
+      - Desktop-Integration-Test:
+          filters:
+            branches:
+              only: 
+                - /feature\/dev-.*/
+                - develop
       - Build-Desktop-Web-Image:
           requires:
             - Desktop-Integration-Test
