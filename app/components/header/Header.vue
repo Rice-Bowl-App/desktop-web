@@ -1,21 +1,24 @@
 <template>
   <header :class="$style['page-header']">
     <TopMenu />
+
+    <BottomMenu />
   </header>
 </template>
 <script>
 import TopMenu from './top-menu/TopMenu'
+import BottomMenu from './bottom-menu/BottomMenu'
 
 export default {
   components: {
-    TopMenu
+    TopMenu,
+    BottomMenu
   }
 }
 </script>
 <style lang="scss" module>
 .page-header {
   width: 100%;
-  height: 80px;
-  // position: relative;
+  height: auto;
 }
 </style>
