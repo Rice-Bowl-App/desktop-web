@@ -45,7 +45,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/svg'
   ],
   styleResources: {
     scss: [
@@ -81,8 +82,12 @@ export default {
         }
       }
     },
-    cssModules: {
-      localIdentName: '[hash:base64:5]'
+    loaders: {
+      cssModules: {
+        modules: {
+          localIdentName: '[hash:base64:5]'
+        }
+      }
     },
     postcss: {
       plugins: {},

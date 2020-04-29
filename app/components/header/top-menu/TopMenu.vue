@@ -10,16 +10,16 @@
         </label>
       </div>
 
-      <TopMenuList :lists="navList" />
+      <Navigation :lists="navList" />
     </div>
   </div>
 </template>
 <script>
-import TopMenuList from './TopMenuList'
+import Navigation from '~/components/header/navigation/Navigation'
 
 export default {
   components: {
-    TopMenuList
+    Navigation
   },
   data() {
     return {
