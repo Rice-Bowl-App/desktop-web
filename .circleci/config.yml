@@ -19,7 +19,7 @@ jobs:
           name: Build Image Test 
           command: |
             mv .env.example .env
-            docker-compose build desktop-web
+            docker-compose build --no-cache desktop-web
       
       - save_cache:
             paths:
@@ -47,7 +47,7 @@ jobs:
           command: |
             mv .env.example .env
             sed -i 's/MODE=local/MODE=dev-server/' .env
-            docker-compose build desktop-web
+            docker-compose build --no-cache desktop-web
             docker tag app_desktop-web ferdiardiansa/rb-client_desktop-web:beta
             docker images
 

@@ -25,6 +25,9 @@ RUN if [ "${NODE_ENV}" = "development" ]; \
     else npm i --only=production; \
   fi
 
+# Rebuild node-sass
+# RUN npm rebuild node-sass --force
+
 # Build nuxt
 RUN if [ "${MODE}" = "dev-server" ]; \
     then npm run build -loglevel info; \
