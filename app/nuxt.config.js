@@ -4,14 +4,15 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Web Hosting Indonesia Unlimited & Terbaik - Niagahoster',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content:
+          'RAMADHAN DISKON 75% | Web Hosting Indonesia Unlimited Terbaik. Gratis SSL & Domain. Support 24/7 & garansi uang kembali! '
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -19,11 +20,11 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: false,
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/scss/_main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -35,7 +36,8 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/style-resources'
   ],
   /*
    ** Nuxt.js modules
@@ -45,6 +47,14 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
   ],
+  styleResources: {
+    scss: [
+      '~assets/scss/_var.scss',
+      '~assets/fonts/font-awesome/scss/fontawesome.scss',
+      '~assets/fonts/font-awesome/scss/solid.scss',
+      '~assets/fonts/font-awesome/scss/brands.scss'
+    ]
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -57,6 +67,31 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    },
+    cssModules: {
+      localIdentName: '[hash:base64:5]'
+    },
+    postcss: {
+      plugins: {},
+      preset: {
+        autoprefixer: {
+          grid: true,
+          flexbox: 'no-2009'
+        }
+      }
+    }
   }
 }

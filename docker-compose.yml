@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./app/:/usr/app
+      # - /usr/app
       - /usr/app/node_modules
     networks:
       - desktop-network
