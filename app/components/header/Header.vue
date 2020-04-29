@@ -20,5 +20,6 @@ export default {
 .page-header {
   width: 100%;
   height: auto;
+  @include container();
 }
 </style>

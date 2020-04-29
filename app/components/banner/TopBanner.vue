@@ -46,6 +46,8 @@ export default {
 </script>
 <style lang="scss" module>
 .banner {
+  height: 400px;
+  padding: 20px 0;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;

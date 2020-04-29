@@ -17,8 +17,8 @@ export default {
 </script>
 <style lang="scss" module>
 .container {
+  height: 100%;
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

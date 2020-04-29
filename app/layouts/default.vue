@@ -5,24 +5,28 @@
     <main :class="$style['main']">
       <Nuxt />
     </main>
+
+    <Footer />
   </div>
 </template>
 <script>
 import Header from '~/components/header/Header'
+import Footer from '~/components/footer/Footer'
 
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
 <style lang="scss" module>
 .page-container {
-  max-width: 1120px;
-  margin: 0 auto;
+  position: relative;
 
   .main {
     position: relative;
+    @include container();
   }
 }
 </style>
