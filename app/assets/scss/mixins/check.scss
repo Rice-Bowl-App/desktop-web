@@ -1,0 +1,26 @@
+@mixin checkList {
+  padding-left: 30px;
+
+  &:before {
+    @extend %fa-icon;
+    @extend .fas;
+    content: fa-content($fa-var-check);
+    color: $white;
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    z-index: 1;
+    font-size: 12px;
+  }
+
+  &:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: $wa-shadow-green;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    left: 0;
+  }
+}

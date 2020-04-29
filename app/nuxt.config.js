@@ -51,6 +51,7 @@ export default {
   styleResources: {
     scss: [
       '~assets/scss/_var.scss',
+      '~assets/scss/_mixins.scss',
       '~assets/fonts/font-awesome/scss/fontawesome.scss',
       '~assets/fonts/font-awesome/scss/solid.scss',
       '~assets/fonts/font-awesome/scss/brands.scss'
